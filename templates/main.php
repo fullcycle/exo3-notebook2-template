@@ -3,9 +3,9 @@
 $display = $_GET['display'] ?? null;
 $update = $_GET['update'] ?? null;
 
-// if (isset($_GET['id'])) {
-//   $note = getNote($_GET['id']);
-// }
+if (isset($_GET['id'])) {
+  $my_note = getNote($_GET['id']);
+}
 
 ?>
 
@@ -101,7 +101,7 @@ $update = $_GET['update'] ?? null;
   <div class="modal <?= ($update === 'true') ? 'display' : 'display-none' ?>">
 
     <form action="/?action=update&id=<?= $_GET['id'] ?>" method="post">
-      <input type="text" name="title" value="<?= getNote($_GET['id'])[0]['title'] ?>">
+      <input type="text" name="title" value="<?= $my_note[0]['title'] ?>">
       <input type="text" name="note" value="<?= getNote($_GET['id'])[0]['note'] ?>">
       <button type="submit">Update</button>
     </form>
