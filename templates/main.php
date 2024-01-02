@@ -1,3 +1,14 @@
+<?php
+
+$display = $_GET['display'] ?? null;
+$update = $_GET['update'] ?? null;
+
+// if (isset($_GET['id'])) {
+//   $note = getNote($_GET['id']);
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +47,20 @@
         <div class="notes">
           <h3><?= $note['title'] ?></h3>
           <p><?= $note['note'] ?></p>
+          <a href="/?action=delete&id=<?= $note['id'] ?>" class="btn <?= ($display === 'delete') ? 'display' : 'display-none' ?>">
+            <div class="del">
+              <span class="material-symbols-outlined"><!--- delete --->
+                delete
+              </span>
+            </div>
+          </a>
+          <a href="/?update=true&id=<?= $note['id'] ?>" class="btn <?= ($display === 'update') ? 'display' : 'display-none' ?>">
+            <div class="del">
+              <span class="material-symbols-outlined"><!--- update --->
+                edit
+              </span>
+            </div>
+          </a>
         </div>
       <?php endforeach ?>
     </div>
@@ -49,21 +74,38 @@
         </span>
       </div>
     </a>
-    <a class="btn" href="/?action=update">
+    <a class="btn" href="<?= ($display === 'update') ? '/' : '/?display=update' ?>">
       <div>
         <span class="material-symbols-outlined"><!--- update --->
           edit
         </span>
       </div>
-      </a>
-      <a class="btn" href="/?action=delete">
-        <div class="del">
-          <span class="material-symbols-outlined"><!--- delete --->
-            delete
-          </span>
-        </div>
-      </a>
+    </a>
+    <a class="btn" href="<?= ($display === 'delete') ? '/' : '/?display=delete' ?>">
+      <div class="del">
+        <span class="material-symbols-outlined"><!--- delete --->
+          delete
+        </span>
+      </div>
+    </a>
+    <a class="btn" href="/">
+      <div>
+        <span class="material-symbols-outlined"><!--- cancel --->
+          cancel
+        </span>
+      </div>
+    </a>
   </section>
+
+  <a href="/" class="modal-background <?= ($update === 'true') ? 'display' : 'display-none' ?>"></a>
+  <div class="modal <?= ($update === 'true') ? 'display' : 'display-none' ?>">
+
+    <form action="/?action=update&id=<?= $_GET['id'] ?>" method="post">
+      <input type="text" name="title" value="<?= getNote($_GET['id'])[0]['title'] ?>">
+      <input type="text" name="note" value="<?= getNote($_GET['id'])[0]['note'] ?>">
+      <button type="submit">Update</button>
+    </form>
+  </div>
 
 </body>
 

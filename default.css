@@ -24,6 +24,7 @@ body {
   height: 100dvh;
   width: 100vw;
   background: var(--surface);
+  overflow: hidden;
 }
 
 nav {
@@ -107,12 +108,12 @@ section {
   background: var(--surface-container-lowest);
   border-radius: 100rem;
 }
-section > .btn {
+.btn {
   display: flex;
   padding: 0.25rem;
   cursor: pointer;
 }
-section > .btn > div {
+.btn > div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,20 +122,20 @@ section > .btn > div {
   background: var(--primary-container);
   color: var(--on-primary-container);
 }
-section > .btn > div.del {
+.btn > div.del {
   background: var(--tertiary-container);
   color: var(--on-tertiary-container);
 }
-section > .btn:hover > div {
+.btn:hover > div {
   background: color-mix(in srgb, var(--primary-container) 92%, var(--on-primary-container) 8%);
 }
-section > .btn:active > div {
+.btn:active > div {
   background: color-mix(in srgb, var(--primary-container) 88%, var(--on-primary-container) 12%);
 }
-section > .btn:hover > div.del {
+.btn:hover > div.del {
   background: color-mix(in srgb, var(--tertiary-container) 92%, var(--on-tertiary-container) 8%);
 }
-section > .btn:active > div.del {
+.btn:active > div.del {
   background: color-mix(in srgb, var(--tertiary-container) 88%, var(--on-tertiary-container) 12%);
 }/*# sourceMappingURL=default.css.map */
 
@@ -146,4 +147,70 @@ section > .btn:active > div.del {
 .notes p, .notes h3{
   color: var(--on-surface);
   font-family: 'Roboto';
+}
+
+a{
+  text-decoration: none;
+}
+
+.display{
+  display: flex;
+}
+
+.display-none{
+  display: none !important;
+}
+
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  width: 300px;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.modal form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:8px;
+}
+
+.modal input{
+  width: 100%;
+  background: var(--on-tertiary-container);
+  border: none;
+  outline: none;
+  color: var(--surface);
+  font-family: 'Roboto';
+  padding: 8px;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
+.modal button{
+  align-self: center;
+  border-radius: 24px;
+  padding: 12px;
+  color: var(--on-primary-container);
+  background: var(--primary-container);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+
+.modal-background{
+  background: rgba(0, 0, 0, .5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: none;
 }
