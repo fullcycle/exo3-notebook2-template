@@ -18,9 +18,31 @@ function getAll(){
     return $statement->fetchAll();
 }
 
-function createNote(){
+function getNote($id){
     global $db;
 
-    $statement = $db->prepare("INSERT INTO notes (title, note) VALUE (DEFAULT, DEFAULT)");
+    $statement = $db->prepare("SELECT title, note FROM notes WHERE id = $id");
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function create($title, $note){
+    global $db;
+
+    $statement = $db->prepare("INSERT INTO notes (title, note) VALUE ('$title', '$note')");
+    $statement->execute();
+}
+
+function delete($id){
+    global $db;
+
+    $statement = $db->prepare("DELETE FROM notes WHERE id = $id");
+    $statement->execute();
+}
+
+function update($id, $title, $note){
+    global $db;
+
+    $statement = $db->prepare("UPDATE notes SET title = '$title', note = '$note' WHERE id = $id");
     $statement->execute();
 }
